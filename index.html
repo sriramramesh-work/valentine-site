@@ -6,27 +6,36 @@
 <title>Be My Valentine ❤️</title>
 
 <style>
+/* Body styling */
 body {
     margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
     font-family: Arial, sans-serif;
-    overflow: hidden;
     text-align: center;
+    padding: 0;
 }
 
+/* Main container */
 .container {
-    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Question heading */
 h1 {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     color: white;
+    margin-bottom: 30px;
 }
 
+/* Buttons */
 button {
     padding: 15px 30px;
     font-size: 18px;
@@ -48,6 +57,7 @@ button {
     position: relative;
 }
 
+/* Floating hearts */
 .heart {
     position: absolute;
     color: red;
@@ -60,6 +70,7 @@ button {
     100% { transform: translateY(-300px); opacity: 0; }
 }
 
+/* Love letter */
 .love-letter {
     max-width: 600px;
     color: white;
@@ -67,35 +78,45 @@ button {
     line-height: 1.6;
     animation: fadeIn 2s ease forwards;
     opacity: 0;
+    margin-bottom: 30px;
 }
 
 @keyframes fadeIn {
     to { opacity: 1; }
 }
 
+/* Photo gallery */
 .photo-gallery {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .photo-gallery img {
-    width: 200px;
-    height: 250px;
-    object-fit: cover;
+    width: 90%;
+    max-width: 300px;
+    height: auto;
     border-radius: 20px;
-    margin: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    margin: 15px auto;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s forwards;
 }
 
-.photo-gallery img:hover {
-    transform: scale(1.1);
-}
+.photo-gallery img:nth-child(1) { animation-delay: 0.3s; }
+.photo-gallery img:nth-child(2) { animation-delay: 0.6s; }
+.photo-gallery img:nth-child(3) { animation-delay: 0.9s; }
 
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
+</head>
 
 <body>
-
-
 <div class="container" id="mainContent">
     <h1>Will you be my Valentine? 💘</h1>
     <button id="yesBtn">Yes 💖</button>
@@ -105,31 +126,24 @@ button {
 <script>
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-
 let yesSize = 1;
 
 // YES CLICK
 yesBtn.addEventListener("click", () => {
-
-
-    // Replace content with love letter
     document.getElementById("mainContent").innerHTML = `
-        <h1>YAY!!! :) ❤️</h1>
-        <div class="love-letter">
-            Meri Jaan,<br><br>
-            I want you to be my Valentine forever, no matter how far we are. 
-	    Cuz you'll always be my SHONU MONU TONU LONU PONUUUUUUU
+        <div class="love-content">
+            <div class="love-letter">
+               Meri Jaan,<br><br>
+               I want you to be my Valentine forever, no matter how far we are. 
+	       Cuz you'll always be my SHONU MONU TONU LONU PONUUUUUUU
+            </div>
+            <div class="photo-gallery">
+                <img src="photo1.jpg" alt="Us">
+                <img src="photo2.jpg" alt="Us">
+                <img src="photo3.jpg" alt="Us">
+            </div>
         </div>
-
-        
-        <div class="photo-gallery">
-            <img src="photo1.jpg" alt="Us">
-            <img src="photo2.jpg" alt="Us">
-            <img src="photo3.jpg" alt="Us">
-        </div>
-    
     `;
-
     createHearts();
 });
 
@@ -151,7 +165,6 @@ function createHearts() {
 
 // NO BUTTON HOVER
 noBtn.addEventListener("mouseover", () => {
-
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
 
@@ -163,6 +176,5 @@ noBtn.addEventListener("mouseover", () => {
     yesBtn.style.transform = `scale(${yesSize})`;
 });
 </script>
-
 </body>
 </html>
